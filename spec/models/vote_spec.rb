@@ -5,7 +5,7 @@ require 'rails_helper'
    let(:topic) { create(:topic) }
    let(:user) { create(:user) }
    let(:post) { create(:post) }
-   let(:vote) { Vote.create!(value: 1, post: post, user: user) }
+   let(:vote) { create(:vote) }
  
    it { is_expected.to belong_to(:post) }
    it { is_expected.to belong_to(:user) }
@@ -20,10 +20,6 @@ require 'rails_helper'
        expect(vote).to receive(:update_post).at_least(:once)
        vote.save!
      end
- 
-     it "#update_post should call update_rank on post " do
-       expect(post).to receive(:update_rank).at_least(:once)
-       vote.save!
-     end
+
    end
  end
