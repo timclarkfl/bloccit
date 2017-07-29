@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+ 
   
    let(:name) { RandomData.random_sentence }
    let(:description) { RandomData.random_paragraph }
@@ -13,6 +13,8 @@ RSpec.describe Post, type: :model do
    let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
  # #2
    let(:post) { topic.posts.create!(title: title, body: body, user: user) }
+   
+   it { is_expected.to have_many(:comments) }
  
    it { is_expected.to belong_to(:topic) }
    it { is_expected.to belong_to(:user) }
